@@ -177,6 +177,12 @@ private _showFinal: boolean;
     }
     return exibirVitoria;
   }
+  novoJogo():void{
+    this.inicializar();
+    this._showFinal = false;
+    this._showInicio = false;
+    this._showTabuleiro = true;
+  }
 
 
 
