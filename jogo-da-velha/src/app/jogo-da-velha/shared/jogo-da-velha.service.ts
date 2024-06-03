@@ -139,9 +139,45 @@ private _showFinal: boolean;
   }
   obterJogada(jogador:number): number[]
   {
-    
+    let tab = this.tabuleiro;
+    for(let lin=0;lin<this.TAM_TAB;lin++){
+      for(let col = 0; col< this.TAM_TAB;col++){
+        
+        if(tab[lin][col]!= this.VAZIO){
+          continue;
+        }
+        tab[lin][col] = jogador;
+        if(this.fimJogo(lin,col,tab,jogador)){
+          return [lin,col];
+        }
+        tab[lin][col] = this.VAZIO;
+      }
+    }
     return[];
   }
+
+  exibirX(posX:number,posY:number):boolean{
+    return this.tabuleiro[posX][posY] === this.X;
+  }
+
+  exibirO(posX:number,posY:number):boolean{
+    return this.tabuleiro[posX][posY] === this.O;
+  }
+  exibirVitoria(posX:number,posY:number):boolean{
+    let exibirVitoria:boolean = false;
+    if(!this.vitoria){
+      return exibirVitoria;
+    }
+
+    for(let pos of this.vitoria){
+      if(pos[0]===posX&&pos[1]===posY){
+        exibirVitoria = true;
+        break;
+      }
+    }
+    return exibirVitoria;
+  }
+
 
 
 }
